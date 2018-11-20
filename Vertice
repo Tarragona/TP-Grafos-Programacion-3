@@ -1,0 +1,29 @@
+package grafo;
+
+public class Vertice {
+	
+	String nombre;
+	int numVertice;
+	
+	public Vertice (String Nombre) {
+		
+		nombre = Nombre;
+		numVertice = -1;
+	}
+	
+	public String nomVertice() {
+		
+		return nombre;
+	}
+	
+	public boolean esIgual(Vertice n) {
+		
+		return nombre.equals(n.nombre);
+	}
+	
+	public void asigNumVertice(int num) {
+		
+		numVertice = num;
+	}
+}
+
