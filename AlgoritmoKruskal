@@ -1,0 +1,79 @@
+package grafo;
+
+public class AlgoritmoKruskal {
+	
+	static int INFINITO = 0xFFFF;
+	private int [][] matriz;
+	private int numVertices;
+	private int pariente[];
+	
+	private Vertice[] vertices;
+	
+	public AlgoritmoKruskal(Peso px, Vertice[] vert) {
+		
+		this.matriz = px.getMatPesos();
+		this.numVertices = px.numeroVertices();
+		this.vertices = vert;
+		pariente = new int[this.numVertices+1];	
+	}
+	
+	protected void recorrer() {
+		
+		int i = 0, ne = 1, minimo = 0, a = 0, u = 0, b = 0, v = 0, minimoCosto = 0;
+		
+		System.out.println("Camino minimo: \n");
+		
+		while (ne < numVertices) {
+			
+			for(i = 1, minimo = INFINITO; i <= numVertices; i++) {
+				
+				for(int j = 1; j <= numVertices; j++) {
+					
+					if(matriz[i-1][j-1] < minimo) {
+						
+						minimo = matriz[i-1][j-1];
+						a = u = i;
+						b = v = j;
+					}
+				}
+			}
+			
+			u = find(u);
+			v = find(v);
+			
+			if(uni(u, v) >0) {
+				
+				System.out.println((ne++)+" Pasada: Arista entre Vertice: " + this.vertices[a-1].nomVertice() + "  y Vertice: " + this.vertices[b-1].nomVertice() + "  Peso = " + minimo);
+				
+				minimoCosto += minimo;
+			}
+			
+			matriz[a-1][b-1] = matriz[b-1][a-1] = INFINITO;
+		}
+		
+		System.out.println("");
+		System.out.println("Costo minimo: " + minimoCosto);
+	}
+
+
+	private int find(int i) {
+		
+		while (pariente[i] > 0) {
+			
+			i = pariente[i];
+		}
+		
+		return i;
+	}
+	
+	private int uni(int i, int j) {
+		
+		if(i != j) {
+			
+			pariente[j] = i;
+		}
+		
+		return 0;
+	}
+
+}
