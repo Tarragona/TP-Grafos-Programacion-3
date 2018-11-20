@@ -1,0 +1,87 @@
+package grafo;
+
+public class Peso {
+	
+	public static int INFINITO = 0xFFFF;
+	private int [][] matPesos;
+	private Vertice [] vert;
+	private int numVert;
+	
+	public Peso(int x) {
+		
+		matPesos = new int [x][x];
+		vert = new Vertice[x];
+		
+		for (int i = 0; i < x; i++) {
+			
+			for (int j = 0; j < x; j++) {
+				
+				matPesos[i][j] = INFINITO;
+				numVert = 0;
+			}
+		}
+		
+	}
+	
+	public void nuevoVertice(String nom) {
+		
+		boolean esta = numVertice(nom) >= 0;
+		
+		if(!esta) {
+			
+			Vertice v = new Vertice(nom);
+			v.asigNumVertice(numVert);
+			vert[numVert++] = v;
+		}
+	}
+
+	public int pesoArco(String a, String b) {
+		
+		int va, vb;
+		va = numVertice(a);
+		vb = numVertice(b);
+		return matPesos [va][vb];
+	}
+	
+	public int numeroVertices() {
+		
+		return numVert;
+	}
+	
+	public Vertice[] vertices() {
+		
+		return vert;
+	}
+	
+	public void nuevoArco(String a, String b, int peso) {
+		
+		int va, vb;
+		va = numVertice(a);
+		vb = numVertice(b);
+		matPesos[va][vb] = peso;
+	}
+	
+	public int numVertice(String vx) {
+		
+		Vertice v = new Vertice(vx);
+		boolean encontrado = false;
+		int i = 0;
+		
+		for(;(i < numVert) && !encontrado;) {
+			
+			encontrado = vert[i].equals(v);
+			
+			if(!encontrado) {
+				i++;
+			}
+		}
+		
+		return (i < numVert) ? i : -1;
+	}
+	
+	public int [][] getMatPesos() {
+		
+		return matPesos;
+	}
+
+}
