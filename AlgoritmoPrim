@@ -1,0 +1,76 @@
+package grafo;
+
+public class AlgoritmoPrim {
+	
+	private int [][] Pesos;
+	private int n;              // Vertice de origen y numero de vertices.
+	private Vertice[] vertices;
+	int cont;
+	
+	
+	public AlgoritmoPrim(Peso px, Vertice[] vert) {
+		
+		n = px.numeroVertices();
+		Pesos = px.getMatPesos();
+		vertices = vert;
+		cont = 0;
+	}
+	
+	
+	@SuppressWarnings("unused")
+	protected int arbolExpansionPrim() {
+		
+		int longMin, menor;
+		int z = 0;
+		int [] coste = new int[n];
+		int [] masCerca = new int[n];
+		boolean [] W = new boolean[n];
+		
+		for(int i = 0; i < n; i++) {
+			
+			W[i] = false;      //Conjunto vacio.
+		}
+		
+		longMin = 0;
+		W[0] = true;        //Se parte del vertice 0.
+				
+		for(int i = 1; i < n; i++) {
+			
+			coste[i] = Pesos [0][i];	//El coste[i] es la arista (0, i).
+			masCerca[i] = 0;
+		}
+		
+		for(int i = 1; i < n; i++) {
+			
+			menor = coste[i];
+			z = 1;
+			
+			for(int j = 2; j < n; j++) {
+				
+				if (coste[j] < menor) {
+					
+					menor = coste[j];
+					z = j;
+				}
+				
+				longMin += menor;
+				System.out.println((++cont)+"Pasada: Vertice: "+vertices[masCerca[z]].nomVertice()+" ----> " + "Vertice: "+vertices[z].nomVertice()+"   Peso: "+coste[z]);
+				
+				W[z] = true;
+				coste[z] = Peso.INFINITO;
+				
+				for (int h = 1; h < n; h++) {
+					
+					if((Pesos[z][h] < coste[h]) && !W[h]) {
+						
+						coste[h] = Pesos[z][h];
+						masCerca[h] = z;
+					}
+				}
+				return longMin;
+			}
+		}
+		return z;
+		
+	}
+}
