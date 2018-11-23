@@ -54,7 +54,7 @@ public class AlgoritmoPrim {
 				}
 				
 				longMin += menor;
-				System.out.println((++cont)+"Pasada: Vertice: "+vertices[masCerca[z]].nomVertice()+" ----> " + "Vertice: "+vertices[z].nomVertice()+"   Peso: "+coste[z]);
+				System.out.println((++cont)+" Pasada: Vertice: "+vertices[masCerca[z]].nomVertice()+" ----> " + "Vertice: "+vertices[z].nomVertice()+"   Peso: "+coste[z]);
 				
 				W[z] = true;
 				coste[z] = Peso.INFINITO;
@@ -74,3 +74,4 @@ public class AlgoritmoPrim {
 		
 	}
 }
+
