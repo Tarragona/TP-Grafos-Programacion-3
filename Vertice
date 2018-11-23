@@ -2,16 +2,23 @@ package grafo;
 
 public class Vertice {
 	
-	String nombre;
+	//String nombre;
+	int nombre;
 	int numVertice;
 	
-	public Vertice (String Nombre) {
+	/*public Vertice (String Nombre, int num) {
 		
 		nombre = Nombre;
-		numVertice = -1;
+		numVertice = num;
+	}*/
+
+	public Vertice (int Nombre, int num) {
+		
+		nombre = Nombre;
+		numVertice = num;
 	}
 	
-	public String nomVertice() {
+	/*public String nomVertice() {
 		
 		return nombre;
 	}
@@ -19,11 +26,15 @@ public class Vertice {
 	public boolean esIgual(Vertice n) {
 		
 		return nombre.equals(n.nombre);
+	}*/
+	
+	public int nomVertice() {
+		
+		return nombre;
 	}
 	
-	public void asigNumVertice(int num) {
+	public boolean esIgual(Vertice n) {
 		
-		numVertice = num;
+		return nombre == n.nombre;
 	}
 }
-
