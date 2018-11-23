@@ -1,11 +1,18 @@
 package grafo;
 
+import java.util.ArrayList;
+
 public class Peso {
 	
 	public static int INFINITO = 0xFFFF;
 	private int [][] matPesos;
 	private Vertice [] vert;
-	private int numVert;
+	public int numVert;
+	private boolean[] visitadoAnchura = new boolean[7];
+	ArrayList<Integer> recorridos = new ArrayList<Integer>();	
+    private boolean[] visitadoProfunidad = new boolean[7];
+	private ArrayList<Vertice> v = new ArrayList<Vertice>(); 
+    private ArrayList<Peso> p = new ArrayList<Peso>();
 	
 	public Peso(int x) {
 		
@@ -23,19 +30,37 @@ public class Peso {
 		
 	}
 	
-	public void nuevoVertice(String nom) {
+	/*public void nuevoVertice(String nom) {			//Crea un vertice con el nombre que recibe por parametro.
 		
 		boolean esta = numVertice(nom) >= 0;
 		
-		if(!esta) {
+		if(esta) {
 			
-			Vertice v = new Vertice(nom);
-			v.asigNumVertice(numVert);
+			Vertice v = new Vertice(nom, numVert);
+			vert[numVert++] = v;
+		}
+	}*/
+	
+	public void nuevoVertice(int nom) {			//Crea un vertice con el nombre que recibe por parametro.
+		
+		boolean esta = numVertice(nom) >= 0;
+		
+		if(esta) {
+			
+			Vertice v = new Vertice(nom, numVert);
 			vert[numVert++] = v;
 		}
 	}
 
-	public int pesoArco(String a, String b) {
+	/*public int pesoArco(String a, String b) {		//Devuelve el valor del peso entre las aristas ingresadas.
+		
+		int va, vb;
+		va = numVertice(a);
+		vb = numVertice(b);
+		return matPesos [va][vb];
+	}*/
+	
+	public int pesoArco(int a, int b) {		//Devuelve el valor del peso entre las aristas ingresadas.
 		
 		int va, vb;
 		va = numVertice(a);
@@ -53,17 +78,27 @@ public class Peso {
 		return vert;
 	}
 	
-	public void nuevoArco(String a, String b, int peso) {
+	/*public void nuevoArco(String a, String b, int peso) {		//Crea un arco entre dos vertices con un peso dado por parametro.
 		
 		int va, vb;
 		va = numVertice(a);
 		vb = numVertice(b);
 		matPesos[va][vb] = peso;
+	}*/
+	
+	public void nuevoArco(int a, int b, int peso) {		//Crea un arco entre dos vertices con un peso dado por parametro.
+		
+		int va, vb;
+		va =a;
+		numVertice(a);
+		vb =b;
+		numVertice(b);
+		matPesos[va][vb] = peso;
 	}
 	
-	public int numVertice(String vx) {
+	/*public int numVertice(String vx) {			//Valida que exista el vertice con el nombre que reciba por parametro.
 		
-		Vertice v = new Vertice(vx);
+		Vertice v = new Vertice(vx, numVert);
 		boolean encontrado = false;
 		int i = 0;
 		
@@ -76,12 +111,88 @@ public class Peso {
 			}
 		}
 		
-		return (i < numVert) ? i : -1;
+		return (i < numVert) ? i : 0;
+	}*/
+	
+	public int numVertice(int vx) {			//Valida que exista el vertice con el nombre que reciba por parametro.
+		
+		Vertice v = new Vertice(vx, numVert);
+		boolean encontrado = false;
+		int i = 0;
+		
+		for(;(i < numVert) && !encontrado;) {
+			
+			encontrado = vert[i].equals(v);
+			
+			if(!encontrado) {
+				i++;
+			}
+		}
+		
+		return (i < numVert) ? i : 0;
 	}
 	
-	public int [][] getMatPesos() {
-		
-		return matPesos;
-	}
+	
+	public void agregarVertice(Vertice n) {
+    	
+    	v.add(n);
+    }
+    
+    
+    public void agregarPeso(Peso x) {
+    	
+    	p.add(x);
+    }
+    
+    public ArrayList<Integer> BFS(int nodoI) {
+
+		visitadoAnchura[nodoI] = true;
+		ArrayList<Integer> cola = new ArrayList<Integer>();						//Cola de visitas de los nodos adyacentes
+		recorridos.add(vert[nodoI].nombre);												
+		cola.add(vert[nodoI].nombre);														
+		        
+		while (!cola.isEmpty()) {
+			
+			int j = cola.remove(0); 											//Se saca el primer nodo de la cola
+			
+				for (int i = 0; i < matPesos.length; i++) {
+						
+					if (matPesos[i][j] == 1 && !visitadoAnchura[i]) {
+		                    cola.add(vert[i].nombre);							//Se agrega a la cola de visitas
+		                    recorridos.add(vert[i].nombre);						//Se marca como recorrido
+		                    visitadoAnchura[i] = true;							//Se marca como visitado
+					}
+		          }
+		        }
+		        return recorridos;												//Devuelvo el recorrido del grafo en anchura
+		    }
+    
+    
+ 
+    public ArrayList<Integer> DFS(Integer nodoI) {
+    	
+    	ArrayList<Integer> recorridos = new ArrayList<Integer>();
+    	visitadoProfunidad[nodoI] = true;
+    	ArrayList<Integer> cola = new ArrayList<Integer>();
+    	recorridos.add(nodoI);
+    	cola.add(nodoI);
+
+    	while (!cola.isEmpty()) {
+    		
+    		int j = cola.remove(0);
+    	   
+    	    for (int i = 0; i < matPesos.length; i++) {
+    	
+    	    	if (matPesos[j][i] == 1 && !visitadoProfunidad[i]) {				//Si es un nodo adyacente y no está visitado entonces
+    	    		
+    	                    cola.add(i);							//Se agrega a la cola de visita
+    	                    recorridos.addAll(DFS(i));						//Se recorren los hijos del nodo actual de visita y se agrega el recorrido al la lista
+    	                    visitadoProfunidad[i] = true;					//Se marca como visitado
+    	                }
+    	            }
+    	        }
+    	        return recorridos;								//Se devuelve el recorrido del grafo en profundidad
+    	   }
+
 
 }
