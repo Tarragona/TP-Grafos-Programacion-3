@@ -19,7 +19,7 @@ public class AlgoritmoKruskal {
 	
 	protected void recorrer() {
 		
-		int i = 0, ne = 1, minimo = 0, a = 0, u = 0, b = 0, v = 0, minimoCosto = 0;
+		int i = 0, j = 0, ne = 1, minimo = 0, a = 0, u = 0, b = 0, v = 0, minimoCosto = 0;
 		
 		System.out.println("Camino minimo: \n");
 		
@@ -27,21 +27,23 @@ public class AlgoritmoKruskal {
 			
 			for(i = 1, minimo = INFINITO; i <= numVertices; i++) {
 				
-				for(int j = 1; j <= numVertices; j++) {
+				for(j = 1; j <= numVertices; j++) {
 					
 					if(matriz[i-1][j-1] < minimo) {
 						
 						minimo = matriz[i-1][j-1];
 						a = u = i;
 						b = v = j;
+						
 					}
 				}
+				
 			}
 			
 			u = find(u);
 			v = find(v);
 			
-			if(uni(u, v) >0) {
+			if(uni(u, v) > 0) {
 				
 				System.out.println((ne++)+" Pasada: Arista entre Vertice: " + this.vertices[a-1].nomVertice() + "  y Vertice: " + this.vertices[b-1].nomVertice() + "  Peso = " + minimo);
 				
