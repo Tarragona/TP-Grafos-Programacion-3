@@ -6,9 +6,10 @@ public class MainPrim {
 		
 		int n = 7;			//Numero de vertices.
 		
-		Peso grafo = new Peso(n);		//Instancia.
+		Peso r = new Peso(n);		//Instancia.
+	
 		
-		String a = "A";		//	
+		/*String a = "A";		//	
 		String b = "B";		//	
 		String c = "C";		//
 		String d = "D";		//	Nombre de las aristas.
@@ -18,38 +19,38 @@ public class MainPrim {
 		
 		
 		
-		grafo.nuevoVertice(a);		//	
-		grafo.nuevoVertice(b);		//
-		grafo.nuevoVertice(c);		//
-		grafo.nuevoVertice(d);		//	Se crean lo vertices.
-		grafo.nuevoVertice(e);		//
-		grafo.nuevoVertice(f);		//
-		grafo.nuevoVertice(g);		//
+		r.nuevoVertice(a);		//	
+		r.nuevoVertice(b);		//
+		r.nuevoVertice(c);		//
+		r.nuevoVertice(d);		//	Se crean lo vertices.
+		r.nuevoVertice(e);		//
+		r.nuevoVertice(f);		//
+		r.nuevoVertice(g);		//
 		
 		
 		
-		grafo.nuevoArco(a, b, 7);		//
-		grafo.nuevoArco(b, a, 7);		//
-		grafo.nuevoArco(a, d, 5);		//
-		grafo.nuevoArco(d, a, 5);		//
-		grafo.nuevoArco(b, c, 8);		//
-		grafo.nuevoArco(c, b, 8);		//
-		grafo.nuevoArco(b, d, 9);		//
-		grafo.nuevoArco(d, b, 9);		//
-		grafo.nuevoArco(b, e, 7);		//
-		grafo.nuevoArco(e, b, 7);		//
-		grafo.nuevoArco(e, c, 5);		//		Enlaces (Nodo1, Nodo2, Peso).
-		grafo.nuevoArco(c, e, 5);		//
-		grafo.nuevoArco(e, d, 15);		//
-		grafo.nuevoArco(d, e, 15);		//
-		grafo.nuevoArco(d, f, 6);		//
-		grafo.nuevoArco(f, d, 6);		//
-		grafo.nuevoArco(e, f, 8);		//
-		grafo.nuevoArco(f, e, 8);		//
-		grafo.nuevoArco(e, g, 9);		//
-		grafo.nuevoArco(g, e, 9);		//
-		grafo.nuevoArco(f, g, 11);		//
-		grafo.nuevoArco(g, f, 11);		//
+		r.nuevoArco(a, b, 7);		//
+		r.nuevoArco(b, a, 7);		//
+		r.nuevoArco(a, d, 5);		//
+		r.nuevoArco(d, a, 5);		//
+		r.nuevoArco(b, c, 8);		//
+		r.nuevoArco(c, b, 8);		//
+		r.nuevoArco(b, d, 9);		//
+		r.nuevoArco(d, b, 9);		//
+		r.nuevoArco(b, e, 7);		//
+		r.nuevoArco(e, b, 7);		//
+		r.nuevoArco(e, c, 5);		//		Enlaces (Nodo1, Nodo2, Peso).
+		r.nuevoArco(c, e, 5);		//
+		r.nuevoArco(e, d, 15);		//
+		r.nuevoArco(d, e, 15);		//
+		r.nuevoArco(d, f, 6);		//
+		r.nuevoArco(f, d, 6);		//
+		r.nuevoArco(e, f, 8);		//
+		r.nuevoArco(f, e, 8);		//
+		r.nuevoArco(e, g, 9);		//
+		r.nuevoArco(g, e, 9);		//
+		r.nuevoArco(f, g, 11);		//
+		r.nuevoArco(g, f, 11);		//
 		
 		
 		//Imprimir los Vertices existentes en el grafo.
@@ -57,15 +58,57 @@ public class MainPrim {
 		System.out.println("Vertices del Grafo ");
 		for(int i = 0; i < n; i++) {
 			
-			System.out.print(grafo.vertices()[i].nomVertice() + " ");
+			System.out.print(r.vertices()[i].nomVertice() + " ");
 		}
 		
-		System.out.println();
+		System.out.println("\n");
+	
 		
 		//Instancia del objeto ArbolExpansionMinimo.
 		
-		AlgoritmoPrim arbol = new AlgoritmoPrim(grafo, grafo.vertices());
+		/*AlgoritmoPrim arbol = new AlgoritmoPrim(r, r.vertices());
 		System.out.println("Costo del arbol minimo: "+ arbol.arbolExpansionPrim());
+		*/
+		
+		r.nuevoVertice(1);		//	
+		r.nuevoVertice(2);		//
+		r.nuevoVertice(3);		//
+		r.nuevoVertice(4);		//			//Se crean lo vertices.
+		r.nuevoVertice(5);		//
+		r.nuevoVertice(6);		//
+		r.nuevoVertice(7);		//
+		
+		
+		
+		r.nuevoArco(0, 1, 7);		//
+		r.nuevoArco(1, 0, 7);		//
+		r.nuevoArco(0, 3, 5);		//
+		r.nuevoArco(3, 0, 5);		//
+		r.nuevoArco(1, 2, 8);		//
+		r.nuevoArco(2, 1, 8);		//
+		r.nuevoArco(1, 3, 9);		//
+		r.nuevoArco(3, 1, 9);		//
+		r.nuevoArco(1, 4, 7);		//
+		r.nuevoArco(4, 1, 7);		//
+		r.nuevoArco(4, 2, 5);		//		//Enlaces (Nodo1, Nodo2, Peso).
+		r.nuevoArco(2, 4, 5);		//
+		r.nuevoArco(4, 3, 15);		//
+		r.nuevoArco(3, 4, 15);		//
+		r.nuevoArco(3, 5, 6);		//
+		r.nuevoArco(5, 3, 6);		//
+		r.nuevoArco(4, 5, 8);		//
+		r.nuevoArco(5, 4, 8);		//
+		r.nuevoArco(4, 6, 9);		//
+		r.nuevoArco(6, 4, 9);		//
+		r.nuevoArco(5, 6, 11);		//
+		r.nuevoArco(6, 5, 11);		//
+		
+		
+		for(int i = 0; i < n; i++) {
+			
+			System.out.println(r.DFS(0));
+		}
+		
 	}
 
 }
