@@ -4,10 +4,12 @@ public class MainKruskal {
 
 	public static void main(String[] args) {
 		
+
 		int n = 7;			//Numero de vertices.
 		
-		Peso grafo = new Peso(n);		//Instancia.
+		Peso r = new Peso(n);		//Instancia.
 		
+		/*
 		String a = "A";		//	
 		String b = "B";		//	
 		String c = "C";		//
@@ -18,38 +20,38 @@ public class MainKruskal {
 		
 		
 		
-		grafo.nuevoVertice(a);		//	
-		grafo.nuevoVertice(b);		//
-		grafo.nuevoVertice(c);		//
-		grafo.nuevoVertice(d);		//	Se crean lo vertices.
-		grafo.nuevoVertice(e);		//
-		grafo.nuevoVertice(f);		//
-		grafo.nuevoVertice(g);		//
+		r.nuevoVertice(a);		//	
+		r.nuevoVertice(b);		//
+		r.nuevoVertice(c);		//
+		r.nuevoVertice(d);		//	Se crean lo vertices.
+		r.nuevoVertice(e);		//
+		r.nuevoVertice(f);		//
+		r.nuevoVertice(g);		//
 		
 		
 		
-		grafo.nuevoArco(a, b, 7);		//
-		grafo.nuevoArco(b, a, 7);		//
-		grafo.nuevoArco(a, d, 5);		//
-		grafo.nuevoArco(d, a, 5);		//
-		grafo.nuevoArco(b, c, 8);		//
-		grafo.nuevoArco(c, b, 8);		//
-		grafo.nuevoArco(b, d, 9);		//
-		grafo.nuevoArco(d, b, 9);		//
-		grafo.nuevoArco(b, e, 7);		//
-		grafo.nuevoArco(e, b, 7);		//
-		grafo.nuevoArco(e, c, 5);		//		Enlaces (Nodo1, Nodo2, Peso).
-		grafo.nuevoArco(c, e, 5);		//
-		grafo.nuevoArco(e, d, 15);		//
-		grafo.nuevoArco(d, e, 15);		//
-		grafo.nuevoArco(d, f, 6);		//
-		grafo.nuevoArco(f, d, 6);		//
-		grafo.nuevoArco(e, f, 8);		//
-		grafo.nuevoArco(f, e, 8);		//
-		grafo.nuevoArco(e, g, 9);		//
-		grafo.nuevoArco(g, e, 9);		//
-		grafo.nuevoArco(f, g, 11);		//
-		grafo.nuevoArco(g, f, 11);		//
+		r.nuevoArco(a, b, 7);		//
+		r.nuevoArco(b, a, 7);		//
+		r.nuevoArco(a, d, 5);		//
+		r.nuevoArco(d, a, 5);		//
+		r.nuevoArco(b, c, 8);		//
+		r.nuevoArco(c, b, 8);		//
+		r.nuevoArco(b, d, 9);		//
+		r.nuevoArco(d, b, 9);		//
+		r.nuevoArco(b, e, 7);		//
+		r.nuevoArco(e, b, 7);		//
+		r.nuevoArco(e, c, 5);		//		Enlaces (Nodo1, Nodo2, Peso).
+		r.nuevoArco(c, e, 5);		//
+		r.nuevoArco(e, d, 15);		//
+		r.nuevoArco(d, e, 15);		//
+		r.nuevoArco(d, f, 6);		//
+		r.nuevoArco(f, d, 6);		//
+		r.nuevoArco(e, f, 8);		//
+		r.nuevoArco(f, e, 8);		//
+		r.nuevoArco(e, g, 9);		//
+		r.nuevoArco(g, e, 9);		//
+		r.nuevoArco(f, g, 11);		//
+		r.nuevoArco(g, f, 11);		//
 		
 		
 		//Imprimir los Vertices existentes en el grafo.
@@ -57,15 +59,15 @@ public class MainKruskal {
 		System.out.println("Vertices del Grafo ");
 		for(int i = 0; i < n; i++) {
 			
-			System.out.print(grafo.vertices()[i].nomVertice() + " ");
+			System.out.print(r.vertices()[i].nomVertice() + " ");
 		}
 		
-		System.out.println();
+		System.out.println("\n");
 		
 		
 		AlgoritmoKruskal kruskal;
-		kruskal = new AlgoritmoKruskal(grafo, grafo.vertices());
-		kruskal.recorrer();
+		kruskal = new AlgoritmoKruskal(r, r.vertices());
+		kruskal.recorrer();*/
 	}
 
 }
